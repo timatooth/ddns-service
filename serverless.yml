@@ -1,0 +1,30 @@
+# lazy ops dynamic dns service:
+# simply curl an apigateway endpoint to update a route53 record set
+# e.g in cron:
+# */10 * * * *  curl https://xxxxxxxxxx.execute-api.ap-southeast-2.amazonaws.com/dev/dns/update
+# security: don't share the url!
+
+service: ddns-service
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: ap-southeast-2
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "route53:ChangeResourceRecordSets"
+      Resource: "arn:aws:route53:::hostedzone/${env:ZONE_ID}"
+
+functions:
+  ddns-service:
+    handler: handler.updatedns
+    environment:
+      ZONE_ID: "${env:ZONE_ID}"
+      RECORD_NAME: "${env:RECORD_NAME}"
+    events:
+      - http:
+          path: dns/update
+          method: get
