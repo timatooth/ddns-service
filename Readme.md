@@ -10,6 +10,7 @@ Because most DYNDNS services tend to suck. Other lambdas online seemed too compl
 
     ZONE_ID=ZX6TTOZYNG4A RECORD_NAME=home.example.com serverless deploy --region ap-southeast-2 --stage dev
 
+
  On your Raspberry Pi:  `crontab -e`:
 
 
