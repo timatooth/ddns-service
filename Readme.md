@@ -5,10 +5,10 @@ Because most DYNDNS services tend to suck. Other lambdas online seemed too compl
 
 ## Deployment
 1. Setup AWS Route53 Hosted Zone with your domain.
-2. Install serverless framework `npm i -g serverless`
+2. Install serverless framework `npm i -g serverless`.
 
 
-    ZONE_ID=ZX6TTOZYNG4A RECORD_NAME=home.example.com serverless deploy --region ap-southeast-2 --stage dev
+    `ZONE_ID=ZX6TTOZYNG4A RECORD_NAME=home.example.com serverless deploy --region ap-southeast-2 --stage dev`
 
 
  On your Raspberry Pi:  `crontab -e`:
